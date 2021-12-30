@@ -8,7 +8,7 @@ from typing import cast
 import logging
 import re
 import sys
-from collections import Counter
+import socket
 
 __version__ = '1.1.1'
 __author__ = 'Oleg Lukianov'
@@ -17,8 +17,17 @@ __author__ = 'Oleg Lukianov'
 logging.basicConfig(level=logging.DEBUG)
 
 class ParseMusicTrack:
-    path_main = "/Users/iuad15au/Downloads/test"
     debug_mode = False
+    hostname = socket.gethostname()
+
+    if hostname == 'LK4H2Q05N':
+        path_main = "/Users/iuad15au/Downloads/test"
+    elif hostname == 'localhost':
+        path_main = "/storage/emulated/0/Musik/Ленинград"
+    else:
+        print(f'Need set var "path_main", you hostname: {hostname}')
+        os._exit(1)
+    
 
     def parse_all_tracks(self):
             """
@@ -95,3 +104,4 @@ if __name__ == "__main__":
         print(f"Argument {COUNT:>6}: {ARG}")
         print(f"Arguments count: {len(sys.argv)}")
         print(f'Debug mode = {debug_mode}')
+        print(f'Hostname = {socket.gethostname()}')
