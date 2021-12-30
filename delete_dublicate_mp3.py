@@ -8,6 +8,7 @@ from typing import cast
 import logging
 import re
 import sys
+from collections import Counter
 
 __version__ = '1.1.1'
 __author__ = 'Oleg Lukianov'
@@ -32,10 +33,10 @@ class ParseMusicTrack:
                 for fname in files:
                     path = os.path.join(root, fname)
                     all_name.append(fname)
-                    if self.debug_mode:
-                        print(f'File={fname}')
-            if self.debug_mode:
-                print('\n')
+            #         if self.debug_mode:
+            #             print(f'File={fname}')
+            # if self.debug_mode:
+            #     print('\n')
 
             return all_name
 
@@ -58,7 +59,7 @@ class ParseMusicTrack:
             if self.debug_mode:
                 print('\n')
 
-            return unique_name_all
+            return set(unique_name_all)
 
     def compare_with_tracks(self):
         """
@@ -71,12 +72,8 @@ class ParseMusicTrack:
         for unique_name in unique_names:
             newList = list(filter(lambda key: unique_name in key, all_name))
             if newList.__len__() > 1:
-                #print(f'yes - x={unique_name}')
                 print("n=" + newList.__str__() + " count: " + newList.__len__().__str__())
-            # else:
-            #     print(f'no  - x={unique_name}')
-            #     print("n=" + newList.__str__() + " count: " + newList.__len__().__str__())
-
+        
 
 if __name__ == "__main__":
     COUNT = None
