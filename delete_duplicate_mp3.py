@@ -70,6 +70,8 @@ class DeleteDuplicateMusicTrack:
         """
         this_function_name = cast(types.FrameType, inspect.currentframe()).f_code.co_name
         logging.debug('Run function = %s', this_function_name)
+        step = 0
+        total = self.compare_with_tracks_count()
 
         for track_unique in self.list_track_unique:
             count = 0
@@ -90,7 +92,28 @@ class DeleteDuplicateMusicTrack:
                 print(f'Number of coincidence = {count}')
                 print('\n')
             if count > 1:
+                step += 1
+                print(f'~~~~ Step = {step} of {total} ~~~~')
                 self.delete_file(list_track, list_path)
+
+    def compare_with_tracks_count(self):
+        """
+        Documentation
+        """
+        this_function_name = cast(types.FrameType, inspect.currentframe()).f_code.co_name
+        logging.debug('Run function = %s', this_function_name)
+        total = 0
+
+        for track_unique in self.list_track_unique:
+            count = 0
+
+            for key_track in self.list_track:
+                if re.search(track_unique, self.list_track[key_track]):
+                    count += 1
+            if count > 1:
+                total += 1
+
+        return total
 
     def delete_file(self, list_track, list_path):
         """
@@ -163,6 +186,7 @@ if __name__ == "__main__":
     try:
         parse_music_track.get_all_tracks()
         parse_music_track.unique_names()
+        parse_music_track.compare_with_tracks_count()
         parse_music_track.compare_with_tracks()
 
         if args.debug:
