@@ -92,8 +92,7 @@ class DeleteDuplicateMusicTrack:
             if count > 1:
                 self.delete_file(list_track, list_path)
 
-    @staticmethod
-    def delete_file(list_track, list_path):
+    def delete_file(self, list_track, list_path):
         """
         Documentation
         """
@@ -101,8 +100,11 @@ class DeleteDuplicateMusicTrack:
         logging.debug('Run function = %s', this_function_name)
         print('~~~~Choose files to delete~~~~')
         for num in list_track:
+            full_path_with_file = f'{list_path[num]}/{list_track[num]}'
+            file_size = self.file_size(full_path_with_file)
             print(f'Number={num} \t track name: "{list_track[num]}" \t '
-                    f'path: "{list_path[num]}/{list_track[num]}"')
+                    f'path: "{list_path[num]}/{list_track[num]}" \t '
+                    f'size: {file_size}')
 
         try:
             txt = input("~~~~Insert number for delete file: ")
@@ -120,6 +122,25 @@ class DeleteDuplicateMusicTrack:
                 if os.path.exists(full_path_with_file):
                     os.remove(full_path_with_file)
         print('\n')
+
+
+    def convert_bytes(self, num):
+        """
+        this function will convert bytes to MB.... GB... etc
+        """
+        for x in ['bytes', 'KB', 'MB', 'GB', 'TB']:
+            if num < 1024.0:
+                return "%3.1f %s" % (num, x)
+            num /= 1024.0
+
+
+    def file_size(self, file_path):
+        """
+        this function will return the file size
+        """
+        if os.path.isfile(file_path):
+            file_info = os.stat(file_path)
+            return self.convert_bytes(file_info.st_size)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
