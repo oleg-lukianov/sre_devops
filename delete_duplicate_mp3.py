@@ -125,14 +125,13 @@ class DeleteDuplicateMusicTrack:
         for num in list_track:
             full_path_with_file = f'{list_path[num]}/{list_track[num]}'
             file_size = self.file_size(full_path_with_file)
-            print(f'Number={num} \t track: "{list_track[num]}" \t '
-                    f'path: "{list_path[num]}" \t '
-                    f'size: {file_size}')
+            print(f'Number={num} \t track: "{list_track[num]}" \t'
+                    f'size: {file_size} \t path: "{list_path[num]}"')
 
         try:
             txt = input("~~~~Insert number for delete file: ")
             number = str(txt)
-        except KeyboardInterrupt:
+        except (KeyboardInterrupt, EOFError):
             print('\n')
             print('Exit. User press Ctrl+C (KeyboardInterrupt)')
             os._exit(1)
