@@ -93,7 +93,7 @@ class DeleteDuplicateMusicTrack:
                 print('\n')
             if count > 1:
                 step += 1
-                print(f'~~~~ Step = {step} of {total} ~~~~')
+                print(f'~~~~ Step = {step} of {total} (looking word "{track_unique}") ~~~~')
                 self.delete_file(list_track, list_path)
 
     def compare_with_tracks_count(self):
