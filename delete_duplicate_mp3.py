@@ -193,6 +193,6 @@ if __name__ == "__main__":
             print(parse_music_track.list_track)
             print(parse_music_track.list_track_unique)
             print(parse_music_track.list_path)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, EOFError):
         print('\n')
         print('Exit. User press Ctrl+C (KeyboardInterrupt)')
