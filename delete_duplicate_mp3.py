@@ -11,7 +11,7 @@ import sys
 import socket
 import argparse
 
-__version__ = '1.2.1'
+__version__ = '1.2.2'
 __author__ = 'Oleg Lukianov'
 
 #logging.basicConfig(level=logging.DEBUG, filename="./delete_duplicate_mp3.log")
@@ -120,7 +120,7 @@ class DeleteDuplicateMusicTrack:
         Documentation
         """
         this_function_name = cast(types.FrameType, inspect.currentframe()).f_code.co_name
-        logging.debug('Run function = %s', this_function_name)
+        #logging.debug('Run function = %s', this_function_name)
         print('~~~~Choose files to delete~~~~')
         for num in list_track:
             full_path_with_file = f'{list_path[num]}/{list_track[num]}'
@@ -140,7 +140,7 @@ class DeleteDuplicateMusicTrack:
         for num in number:
             if list_track.get(num):
                 full_path_with_file = f'{list_path[num]}/{list_track[num]}'
-                print(f'Deleted num={num} \t track name: "{full_path_with_file}"')
+                print(f'Deleted num={num} \t track: "{list_path[num]}"')
                 del list_track[num]
                 if os.path.exists(full_path_with_file):
                     os.remove(full_path_with_file)
