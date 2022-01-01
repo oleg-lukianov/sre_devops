@@ -125,8 +125,8 @@ class DeleteDuplicateMusicTrack:
         for num in list_track:
             full_path_with_file = f'{list_path[num]}/{list_track[num]}'
             file_size = self.file_size(full_path_with_file)
-            print(f'Number={num} \t track name: "{list_track[num]}" \t '
-                    f'path: "{list_path[num]}/{list_track[num]}" \t '
+            print(f'Number={num} \t track: "{list_track[num]}" \t '
+                    f'path: "{list_path[num]}" \t '
                     f'size: {file_size}')
 
         try:
