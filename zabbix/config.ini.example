@@ -1,0 +1,15 @@
+[zabbix.web]
+#url = https://faeton.omon.kv.aval/PEOPLESUPP/api_jsonrpc.php
+url = https://zabbix.kv.aval/PEOPLESUPP/api_jsonrpc.php
+zabbix_api_user = zabbix_api
+zabbix_api_password = <PASSWORD>
+
+[jira.web]
+url = https://jira.raiffeisen.ua/jira
+jira_api_user = ITSYSMON
+jira_api_password = <PASSWORD>
+
+[jira.web.test]
+url = https://jira.raiffeisen.ua/ntest-jira
+jira_api_user = ITSYSMON
+jira_api_password = <PASSWORD>
