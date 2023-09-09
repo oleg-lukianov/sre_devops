@@ -8,3 +8,11 @@ pip3 freeze > requirements.txt
 python3 web_flask.py
 # send POST on
 http://127.0.0.1:8081/host_create_post
+
+$Listener = [System.Net.Sockets.TcpListener]9999; $Listener.Start();
+
+
+
+
+
+
